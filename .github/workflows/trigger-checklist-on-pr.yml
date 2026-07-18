@@ -1,0 +1,16 @@
+name: trigger-checklist-on-pr
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  checklist:
+    uses: OWNER/REPO/.github/workflows/portability-checklist.yml@main
+    with:
+      repo: ${{ github.repository }}
+    secrets:
+      github_token: ${{ secrets.GITHUB_TOKEN }}
